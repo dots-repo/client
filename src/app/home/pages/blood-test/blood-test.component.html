@@ -1,0 +1,101 @@
+<main>
+  <div class="container-fluid p-3">
+
+    <!-- <h3 class="test-heading">{{city}}</h3> -->
+    <div class="row">
+      <div class="col-md-7 m-auto">
+        <div style="display:flex;border-radius: 5px;overflow: hidden;background: #fff;;">
+          <div class="city-box">
+            <mat-icon matPrefix style="align-self: center;color: #e7e7e7;margin-right: 5px;cursor: pointer;"
+              (click)="setCurrentLocation()">room</mat-icon>
+            <div class="input-group no-border">
+              <!-- <input matInput placeholder="Placeholder" > -->
+              <input type="text" placeholder="city" matInput [formControl]="myControl" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredCities | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+
+          </div>
+
+          <div class="search-box">
+            <div class="input-group no-border">
+              <input type="text" matInput placeholder="Search packages/ profiles/ tests" [(ngModel)]="searchText"
+                name="searchText" (keydown)="isSearching($event)" (keydown)="searchNow($event)">
+            </div>
+            <mat-icon matSuffix style="align-self: center;">search</mat-icon>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="isSearched" style="position: absolute;width: 100%;z-index: 99;">
+      <div class="col-md-8 m-auto">
+        <ul class="mega-dropdown-menu">
+
+          <li class="col-sm-3">
+            <ul>
+              <li class="dropdown-header">Packages</li>
+              <li><a href="#">Auto Carousel</a></li>
+              <li><a href="#">Carousel Control</a></li>
+              <li><a href="#">Left & Right Navigation</a></li>
+              <li><a href="#">Four Columns Grid</a></li>
+              <!-- <li class="divider"></li>
+              <li class="dropdown-header">Fonts</li>
+              <li><a href="#">Glyphicon</a></li>
+              <li><a href="#">Google Fonts</a></li> -->
+            </ul>
+          </li>
+          <li class="col-sm-3">
+            <ul>
+              <li class="dropdown-header">Profiles</li>
+              <li><a href="#">Navbar Inverse</a></li>
+              <li><a href="#">Pull Right Elements</a></li>
+              <li><a href="#">Coloured Headers</a></li>
+              <li><a href="#">Primary Buttons & Default</a></li>
+            </ul>
+          </li>
+          <li class="col-sm-3">
+            <ul>
+              <li class="dropdown-header">Tests</li>
+              <li><a href="#">Easy to Customize</a></li>
+              <li><a href="#">Calls to action</a></li>
+              <li><a href="#">Custom Fonts</a></li>
+              <li><a href="#">Slide down on Hover</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-2 col-lg-2">
+        <div class="card justify-content-center pt-4 pb-4">
+          <h5 class="text-center">Filter result</h5>
+          <hr>
+          <div class="col-8 a-auto">
+            <mat-form-field class="example-full-width">
+              <mat-checkbox>Packages</mat-checkbox>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-checkbox>Profile Tests</mat-checkbox>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-checkbox>Single Tests</mat-checkbox>
+            </mat-form-field>
+          </div>
+          <div class="col-12 text-center mt-3">
+            <button class="btn btn-warning">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-8 col-lg-9">
+
+      </div>
+    </div>
+  </div>
+</main>
